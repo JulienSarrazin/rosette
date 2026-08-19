@@ -1,0 +1,45 @@
+# Configuration du site TAC-calc.
+# Éditez ce fichier directement : pas de sélecteur dans l'interface, les
+# changements prennent effet au rechargement de la page. Format YAML minimal
+# (voir js/yaml-lite.js) : indentation à 2 espaces, pas de tabulations.
+
+# Thème actif : doit correspondre à un dossier dans themes/
+theme: juliensarrazin
+
+# Mode d'affichage : clear (clair, forcé), dark (sombre, forcé), ou auto
+# (suit le réglage clair/sombre du système d'exploitation du visiteur —
+# comportement par défaut).
+appearance:
+  mode: clear
+
+# Politique CDN : par défaut, tout est auto-hébergé (aucune dépendance
+# externe, rien ne part vers un service tiers). Passez enabled à true si vous
+# voulez charger la police CDN déclarée par le thème actif (voir
+# themes/<nom>/theme.yml -> typography.google_font_url). Si désactivé (ou si
+# le thème ne déclare pas de police CDN), la pile de police locale du thème
+# est utilisée automatiquement — aucune requête externe.
+cdn:
+  enabled: false
+
+# Présélections du dashboard éco-encrage (l'utilisateur peut les changer dans
+# l'interface à chaque analyse ; ce ne sont que des valeurs de départ).
+dashboard:
+  default_process: offset
+  default_paper: couche-brillant
+
+# Liens et mentions affichés dans l'application (dashboard, pied de page).
+# Éditez ces valeurs sans toucher au code.
+credits:
+  citeo_guide_url: "https://bo.citeo.com/sites/default/files/2019-07/20190524_Citeo_Guide%20%C3%A9co-encrage_WEB.pdf"
+  citeo_guide_label: "Guide de l'éco-encrage, Citeo (2019)"
+  # Article publié sur juliensarrazin.fr (février 2026) expliquant la démarche
+  # ("Mesurer le taux d'encrage : pourquoi la mesure « au point » ne suffit
+  # pas..."). URL exacte à récupérer sur le site (le PDF exporté localement a
+  # l'adresse tronquée) et à coller ci-dessous.
+  article_url: "#"
+  article_label: "Mesurer le taux d'encrage : pourquoi la mesure « au point » ne suffit pas..."
+  # Lien vers le dépôt GitHub une fois publié (voir GITHUB.md à la racine du
+  # dépôt pour la procédure) — à remplacer par l'URL réelle du repo.
+  github_url: "#"
+  github_label: "Code source sur GitHub"
+  ai_disclosure_text: "Cet outil a été vibecodé par IA (Claude Code)."

@@ -1,0 +1,663 @@
+/* Valeurs de repli : utilisées tant que js/theme-loader.js n'a pas injecté
+   les variables du thème actif (voir config.yml / themes/default/theme.yml),
+   et si jamais ce chargement échoue. Les noms de variables ci-dessous doivent
+   rester synchronisés avec ceux que theme-loader.js sait générer. */
+:root {
+	color-scheme: light dark;
+	--bg: #f6f5f2;
+	--surface: #ffffff;
+	--surface-alt: #eef0eb;
+	--text: #1d1e1a;
+	--text-muted: #5c5f57;
+	--border: #dcdcd4;
+	--accent: #2f6f4f;
+	--accent-strong: #1f5138;
+	--accent-contrast: #ffffff;
+	--warning-bg: #fff4e0;
+	--warning-text: #6b4a06;
+	--error-bg: #fdeceb;
+	--error-text: #8a2417;
+	--font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+	--font-heading: var(--font);
+	--radius-sm: 6px;
+	--radius-md: 14px;
+	--radius-lg: 22px;
+	--radius-pill: 999px;
+	--shadow-card: 0 1px 2px rgba(0, 0, 0, 0.04), 0 6px 16px -8px rgba(0, 0, 0, 0.12);
+}
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme="light"]) {
+		--bg: #15171a;
+		--surface: #1f2124;
+		--surface-alt: #262a26;
+		--text: #edeeea;
+		--text-muted: #a4a89f;
+		--border: #33362f;
+		--accent: #6bcf9a;
+		--accent-strong: #8fdfb4;
+		--accent-contrast: #0b1a11;
+		--warning-bg: #3a2f0f;
+		--warning-text: #f0cf7f;
+		--error-bg: #3a1512;
+		--error-text: #f5a89c;
+		--shadow-card: 0 1px 2px rgba(0, 0, 0, 0.3), 0 6px 20px -8px rgba(0, 0, 0, 0.5);
+	}
+}
+:root[data-theme="dark"] {
+	--bg: #15171a;
+	--surface: #1f2124;
+	--surface-alt: #262a26;
+	--text: #edeeea;
+	--text-muted: #a4a89f;
+	--border: #33362f;
+	--accent: #6bcf9a;
+	--accent-strong: #8fdfb4;
+	--accent-contrast: #0b1a11;
+	--warning-bg: #3a2f0f;
+	--warning-text: #f0cf7f;
+	--error-bg: #3a1512;
+	--error-text: #f5a89c;
+	--shadow-card: 0 1px 2px rgba(0, 0, 0, 0.3), 0 6px 20px -8px rgba(0, 0, 0, 0.5);
+}
+
+* { box-sizing: border-box; }
+
+/* Sans ça, un élément avec l'attribut hidden mais aussi une règle CSS style
+   `display: flex` (ex. .progress, .messages) reste visible : une règle
+   d'auteur sur `display` prime toujours sur le style UA par défaut de
+   [hidden]. Cette règle globale garantit que hidden gagne toujours. */
+[hidden] { display: none !important; }
+
+body {
+	margin: 0;
+	background: var(--bg);
+	color: var(--text);
+	font-family: var(--font);
+	line-height: 1.55;
+}
+
+main {
+	max-width: 920px;
+	margin: 0 auto;
+	padding: 2.5rem 1.25rem 4rem;
+}
+
+h1, h2, h3 { font-family: var(--font-heading); }
+
+.header-row {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 1rem;
+	flex-wrap: wrap;
+}
+
+header h1 {
+	font-size: 1.7rem;
+	letter-spacing: -0.01em;
+	margin-bottom: 0.4rem;
+}
+
+.lang-switch {
+	display: inline-flex;
+	border: 1px solid var(--border);
+	border-radius: var(--radius-pill);
+	overflow: hidden;
+	flex-shrink: 0;
+}
+.lang-btn {
+	border: none;
+	border-radius: 0;
+	padding: 0.35rem 0.8rem;
+	font-size: 0.8rem;
+	font-weight: 600;
+	background: var(--surface);
+	color: var(--text-muted);
+}
+.lang-btn:hover { border-color: transparent; color: var(--text); }
+.lang-btn.active {
+	background: var(--accent);
+	color: var(--accent-contrast);
+}
+
+.tagline {
+	color: var(--text-muted);
+	max-width: 62ch;
+}
+
+.drop-zone {
+	margin-top: 1.75rem;
+	border: 2px dashed var(--border);
+	border-radius: var(--radius-lg);
+	padding: 2.75rem 1.5rem;
+	text-align: center;
+	background: var(--surface);
+	transition: border-color 0.15s ease, background 0.15s ease;
+}
+.drop-zone.drag-active {
+	border-color: var(--accent);
+	background: color-mix(in srgb, var(--accent) 8%, var(--surface));
+}
+.drop-zone-main {
+	font-size: 1.15rem;
+	font-weight: 600;
+	margin: 0 0 0.25rem;
+}
+.hint {
+	color: var(--text-muted);
+	font-size: 0.9rem;
+	margin: 0 0 1.1rem;
+}
+.file-name {
+	margin-top: 1rem;
+	font-weight: 600;
+}
+
+button {
+	font: inherit;
+	border: 1px solid var(--border);
+	background: var(--surface);
+	color: var(--text);
+	border-radius: var(--radius-sm);
+	padding: 0.55rem 1.15rem;
+	cursor: pointer;
+	transition: border-color 0.15s ease, transform 0.05s ease;
+	display: inline-flex;
+	align-items: center;
+	gap: 0.45rem;
+}
+
+/* ---- Pictos (sprite SVG auto-hébergé, voir index.html) --------------- */
+
+.icon {
+	width: 1.1em;
+	height: 1.1em;
+	flex-shrink: 0;
+	fill: none;
+	stroke: currentColor;
+	stroke-width: 1.6;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}
+.icon-lg {
+	width: 2.75rem;
+	height: 2.75rem;
+	color: var(--accent);
+	margin-bottom: 0.75rem;
+}
+h2 .icon, summary .icon {
+	color: var(--accent);
+	width: 1.15em;
+	height: 1.15em;
+}
+button:hover:not(:disabled) {
+	border-color: var(--accent);
+}
+button:active:not(:disabled) {
+	transform: translateY(1px);
+}
+button:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+#analyze-btn {
+	background: var(--accent);
+	color: var(--accent-contrast);
+	border-color: var(--accent);
+	font-weight: 600;
+}
+#analyze-btn:hover:not(:disabled) {
+	background: var(--accent-strong);
+	border-color: var(--accent-strong);
+}
+
+.controls {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	margin-top: 1.5rem;
+	flex-wrap: wrap;
+}
+.controls select {
+	font: inherit;
+	padding: 0.5rem 0.7rem;
+	border-radius: var(--radius-sm);
+	border: 1px solid var(--border);
+	background: var(--surface);
+	color: var(--text);
+}
+
+.progress {
+	margin-top: 1.5rem;
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	flex-wrap: wrap;
+}
+.spinner {
+	width: 1.1rem;
+	height: 1.1rem;
+	border: 2px solid var(--border);
+	border-top-color: var(--accent);
+	border-radius: 50%;
+	animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+progress {
+	width: 100%;
+	accent-color: var(--accent);
+}
+
+.messages {
+	margin-top: 1.25rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+.message {
+	margin: 0;
+	padding: 0.6rem 0.9rem;
+	border-radius: var(--radius-sm);
+	font-size: 0.92rem;
+}
+.message-error {
+	background: var(--error-bg);
+	color: var(--error-text);
+}
+.message-warning {
+	background: var(--warning-bg);
+	color: var(--warning-text);
+}
+
+section h2 {
+	margin: 0;
+	font-size: 1.25rem;
+	letter-spacing: -0.01em;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+/* ---- Cards d'encre ------------------------------------------------- */
+
+.ink-cards-section {
+	margin-top: 2.5rem;
+}
+.ink-cards-section h2 {
+	margin-bottom: 1rem;
+}
+.ink-page-group {
+	margin-top: 1.5rem;
+}
+.ink-page-group:first-child {
+	margin-top: 0;
+}
+.ink-page-header {
+	display: flex;
+	align-items: center;
+	gap: 0.6rem;
+	margin-bottom: 0.6rem;
+}
+.ink-page-header .page-thumb {
+	width: 2.2rem;
+	height: 2.2rem;
+	object-fit: contain;
+	border: 1px solid var(--border);
+	border-radius: var(--radius-sm);
+	background: #fff;
+}
+.ink-page-header h3 {
+	font-size: 0.9rem;
+	font-weight: 600;
+	color: var(--text-muted);
+	margin: 0;
+}
+.ink-cards-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+	gap: 0.75rem;
+}
+.ink-card {
+	position: relative;
+	background: var(--surface);
+	border: 1px solid var(--border);
+	border-radius: var(--radius-md);
+	padding: 0.9rem 1rem 1rem;
+	box-shadow: var(--shadow-card);
+	overflow: hidden;
+}
+.ink-card::before {
+	content: "";
+	position: absolute;
+	inset: 0 0 auto 0;
+	height: 5px;
+	background: var(--swatch, var(--accent));
+}
+.ink-card .swatch {
+	width: 1.5rem;
+	height: 1.5rem;
+	border-radius: var(--radius-pill);
+	background: var(--swatch, var(--accent));
+	/* box-shadow plutôt que border : reste visible quel que soit le thème et
+	   quelle que soit la couleur du swatch (encre noire sur carte sombre,
+	   encre claire sur carte claire...), contrairement à une bordure teintée. */
+	box-shadow: 0 0 0 1px var(--border), inset 0 0 0 1px rgba(127, 127, 127, 0.25);
+	margin-bottom: 0.6rem;
+}
+.ink-card .ink-name {
+	font-size: 0.85rem;
+	font-weight: 600;
+	color: var(--text-muted);
+	display: flex;
+	align-items: center;
+	gap: 0.3rem;
+}
+.ink-card .ink-pct {
+	font-size: 1.6rem;
+	font-weight: 700;
+	letter-spacing: -0.02em;
+	margin-top: 0.15rem;
+}
+.ink-card.tac-card {
+	background: var(--surface-alt);
+	border-color: var(--accent);
+}
+.ink-card .approx-flag {
+	font-size: 0.75rem;
+	color: var(--text-muted);
+	font-weight: 400;
+}
+
+/* ---- Résultats / tableau -------------------------------------------- */
+
+.results {
+	margin-top: 2.5rem;
+}
+.results-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 1rem;
+	flex-wrap: wrap;
+}
+.results-actions {
+	display: flex;
+	gap: 0.6rem;
+	flex-wrap: wrap;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 1rem;
+	background: var(--surface);
+	border: 1px solid var(--border);
+	border-radius: var(--radius-md);
+	overflow: hidden;
+}
+th, td {
+	text-align: left;
+	padding: 0.55rem 0.75rem;
+	border-bottom: 1px solid var(--border);
+	font-size: 0.92rem;
+}
+th {
+	cursor: pointer;
+	user-select: none;
+	color: var(--text-muted);
+	font-weight: 600;
+	white-space: nowrap;
+}
+.sort-arrow {
+	font-size: 0.7rem;
+}
+.col-include {
+	text-align: center;
+	width: 1%;
+	white-space: nowrap;
+}
+tr.tac-row td {
+	font-weight: 700;
+}
+tr:last-child td {
+	border-bottom: none;
+}
+
+.legend {
+	color: var(--text-muted);
+	font-size: 0.85rem;
+	margin-top: 0.75rem;
+	line-height: 1.5;
+}
+.legend a { color: inherit; }
+
+/* ---- Dashboard éco-encrage ------------------------------------------ */
+
+.dashboard {
+	margin-top: 2.5rem;
+	background: var(--surface);
+	border: 1px solid var(--border);
+	border-radius: var(--radius-lg);
+	padding: 1.5rem;
+}
+.dashboard h2 {
+	display: flex;
+	align-items: center;
+	gap: 0.6rem;
+}
+.badge-estimation {
+	font-size: 0.7rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	color: var(--accent-strong);
+	background: color-mix(in srgb, var(--accent) 16%, var(--surface));
+	padding: 0.2rem 0.55rem;
+	border-radius: var(--radius-pill);
+}
+.dashboard-intro {
+	color: var(--text-muted);
+	max-width: 68ch;
+	margin-top: 0.5rem;
+}
+.dashboard-intro a, .legend a, footer a { color: var(--accent-strong); }
+
+.dashboard-inputs {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+	gap: 1rem;
+	margin-top: 1.25rem;
+}
+.dashboard-inputs label {
+	display: flex;
+	flex-direction: column;
+	gap: 0.35rem;
+	font-size: 0.85rem;
+	font-weight: 600;
+	color: var(--text-muted);
+}
+.dashboard-inputs select,
+.dashboard-inputs input {
+	font: inherit;
+	padding: 0.5rem 0.65rem;
+	border-radius: var(--radius-sm);
+	border: 1px solid var(--border);
+	background: var(--bg);
+	color: var(--text);
+	font-weight: 400;
+}
+
+.dashboard-results {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+	gap: 0.75rem;
+	margin-top: 1.5rem;
+}
+.dash-stat {
+	background: var(--surface-alt);
+	border-radius: var(--radius-md);
+	padding: 0.9rem 1rem;
+}
+.dash-stat .dash-label {
+	font-size: 0.8rem;
+	color: var(--text-muted);
+	font-weight: 600;
+}
+.dash-stat .dash-value {
+	font-size: 1.4rem;
+	font-weight: 700;
+	letter-spacing: -0.02em;
+	margin-top: 0.15rem;
+}
+.dash-stat .dash-sub {
+	font-size: 0.78rem;
+	color: var(--text-muted);
+	margin-top: 0.2rem;
+}
+
+/* ---- Pédagogie / limites --------------------------------------------- */
+
+.pedagogy {
+	margin-top: 2.5rem;
+	background: var(--surface);
+	border: 1px solid var(--border);
+	border-radius: var(--radius-lg);
+	padding: 1.25rem 1.5rem;
+}
+.pedagogy summary {
+	cursor: pointer;
+	font-weight: 600;
+	font-size: 1.05rem;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+.pedagogy-content {
+	margin-top: 1rem;
+	color: var(--text-muted);
+	max-width: 68ch;
+}
+.pedagogy-content h3 {
+	font-size: 0.95rem;
+	color: var(--text);
+	margin: 1.1rem 0 0.3rem;
+}
+.pedagogy-content h3:first-child { margin-top: 0; }
+.pedagogy-content p { margin: 0.3rem 0; }
+
+/* ---- Footer ----------------------------------------------------------- */
+
+footer {
+	margin-top: 3rem;
+	color: var(--text-muted);
+	font-size: 0.85rem;
+	border-top: 1px solid var(--border);
+	padding-top: 1.25rem;
+}
+footer p { margin: 0.3rem 0; }
+
+/* ---- Rapport imprimable (export PDF via impression navigateur) -------- */
+
+#print-report {
+	display: none;
+}
+
+@media print {
+	@page {
+		margin: 1.5cm;
+	}
+	body > *:not(#print-report) {
+		display: none !important;
+	}
+	#print-report {
+		display: block !important;
+		font-family: var(--font);
+		color: #111;
+	}
+	/* Sans ça, la plupart des navigateurs n'impriment pas les couleurs de
+	   fond par défaut (pour économiser l'encre) — ironique pour un rapport
+	   dont le but est justement de visualiser des couleurs d'encre. */
+	#print-report, #print-report * {
+		-webkit-print-color-adjust: exact;
+		print-color-adjust: exact;
+	}
+	.print-page-block {
+		break-after: page;
+	}
+	.print-page-block:last-child {
+		break-after: auto;
+	}
+}
+
+.print-report-header {
+	margin-bottom: 1.5rem;
+	border-bottom: 2px solid #111;
+	padding-bottom: 0.75rem;
+}
+.print-report-header h1 {
+	font-size: 1.4rem;
+	margin: 0 0 0.3rem;
+}
+.print-report-header p {
+	margin: 0.15rem 0;
+	font-size: 0.85rem;
+	color: #444;
+}
+.print-page-block {
+	margin-bottom: 1.5rem;
+}
+.print-page-block .ink-page-header .page-thumb {
+	width: 3.5rem;
+	height: 3.5rem;
+}
+.print-page-block h3 {
+	font-size: 1.05rem;
+}
+.print-ink-table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 0.5rem;
+	font-size: 0.85rem;
+}
+.print-ink-table th, .print-ink-table td {
+	text-align: left;
+	padding: 0.3rem 0.5rem;
+	border-bottom: 1px solid #ccc;
+}
+.print-ink-table .swatch-dot {
+	display: inline-block;
+	width: 0.7rem;
+	height: 0.7rem;
+	border-radius: 50%;
+	margin-right: 0.4rem;
+	box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
+	vertical-align: middle;
+}
+.print-ink-table tr.tac-row td {
+	font-weight: 700;
+	border-top: 2px solid #111;
+}
+.print-eco-section {
+	margin-top: 1.5rem;
+	padding-top: 1rem;
+	border-top: 1px solid #ccc;
+}
+.print-eco-section h2 {
+	font-size: 1.05rem;
+}
+.print-eco-stats {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 0.75rem;
+	margin-top: 0.5rem;
+	font-size: 0.85rem;
+}
+.print-eco-stats .dash-label { color: #555; font-size: 0.75rem; }
+.print-eco-stats .dash-value { font-weight: 700; font-size: 1.1rem; }
+.print-report-footer {
+	margin-top: 2rem;
+	padding-top: 0.75rem;
+	border-top: 1px solid #ccc;
+	font-size: 0.75rem;
+	color: #555;
+}

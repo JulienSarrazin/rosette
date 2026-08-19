@@ -1,0 +1,28 @@
+# Config pour hébergement mutualisé OVH (Apache).
+# But : servir mupdf-wasm.wasm avec le bon type MIME, compresser les gros
+# fichiers JS/WASM, et mettre en cache longuement les fichiers vendorisés
+# (leur contenu ne change qu'au moment d'un ré-déploiement).
+
+<IfModule mod_mime.c>
+	AddType application/wasm .wasm
+</IfModule>
+
+<IfModule mod_deflate.c>
+	AddOutputFilterByType DEFLATE application/wasm application/javascript text/css text/html application/manifest+json
+</IfModule>
+
+<IfModule mod_headers.c>
+	<FilesMatch "\.(wasm|js)$">
+		<If "%{REQUEST_URI} =~ m#^/vendor/#">
+			Header set Cache-Control "public, max-age=31536000, immutable"
+		</If>
+	</FilesMatch>
+	<FilesMatch "\.(woff2?|ttf|otf)$">
+		<If "%{REQUEST_URI} =~ m#^/themes/#">
+			Header set Cache-Control "public, max-age=31536000, immutable"
+		</If>
+	</FilesMatch>
+	<FilesMatch "^(index\.html|sw\.js|config\.yml)$">
+		Header set Cache-Control "no-cache"
+	</FilesMatch>
+</IfModule>

@@ -1,0 +1,13 @@
+Polices auto-hébergées dans ce dossier :
+
+- Manrope-VariableFont_wght.woff2 — Manrope, par Mikhail Sharanda.
+  Licence : SIL Open Font License 1.1.
+- FiraCode-VariableFont_wght.woff2 — Fira Code, par Nikita Prokopov
+  (basée sur Fira Mono, Mozilla/Carrois Type Design).
+  Licence : SIL Open Font License 1.1.
+
+Texte complet de la licence : https://openfontlicense.org/open-font-license-official-text/
+
+Fichiers récupérés depuis juliensarrazin.fr (thème WordPress "Twenty
+Twenty-Five", qui les auto-héberge déjà lui-même) pour reproduire la même
+typographie ici sans dépendance à un CDN.

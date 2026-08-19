@@ -1,0 +1,27 @@
+# Fichiers de travail personnels, hors périmètre du dépôt public :
+# - docs de référence tiers potentiellement soumis à droit d'auteur (le lien
+#   vers le guide CITEO officiel suffit, voir config.yml -> credits) ;
+# - le CSV ADEME déposé pendant les recherches, sans rapport avec l'encre ;
+# - l'export PDF de l'article (déjà publié en ligne, pas besoin d'une copie) ;
+# - les métadonnées Windows "Zone.Identifier" qui traînent après un
+#   téléchargement, sans aucune valeur.
+/docs/references/
+
+# Copies d'origine à la racine, dupliquées proprement dans docs/
+# (original-python-script.py, prompt-original.md) : on ne versionne que
+# la copie rangée, pas les deux.
+/code-original.txt
+/projet-tac-calc.txt
+/Base_Carbone_V23.11.csv
+/Guide de l'éco-encrage_CITEO.pdf
+/Mesurer le taux d’encrage.pdf
+*:Zone.Identifier
+
+# Artefacts de test/génération locale, à rejouer via les scripts dev/ plutôt
+# qu'à versionner.
+/dev/fixtures/*.png
+
+# Divers
+.DS_Store
+Thumbs.db
+node_modules/

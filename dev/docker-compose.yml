@@ -1,0 +1,7 @@
+services:
+  tac-calc:
+    build:
+      context: ..
+      dockerfile: dev/Dockerfile
+    ports:
+      - "8080:8080"

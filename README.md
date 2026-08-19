@@ -1,0 +1,56 @@
+# TAC-calc
+
+**Mesure du taux de couverture d'encre (TAC) d'un PDF print — 100% dans le
+navigateur, zéro upload, zéro backend.**
+
+Analyse un PDF d'impression (CMJN + tons directs) et calcule la couverture
+d'encre par page, directement dans l'onglet du navigateur — le fichier ne
+quitte jamais l'ordinateur. Pensé pour les graphistes et éco-concepteurs
+packaging : cards colorées par encre, dashboard traduisant le taux d'encrage
+en poids d'encre et empreinte carbone (d'après le
+[Guide de l'éco-encrage, Citeo](https://bo.citeo.com/sites/default/files/2019-07/20190524_Citeo_Guide%20%C3%A9co-encrage_WEB.pdf)),
+export CSV et rapport PDF, interface FR/EN.
+
+![Aperçu de l'outil](docs/screenshot.png)
+
+## Pourquoi
+
+Portage d'un script Python original (voir `docs/original-python-script.py`)
+qui s'appuyait sur Ghostscript pour rasteriser un PDF en séparations
+contone et calculer la couverture d'encre. Ce dépôt en fait une version
+100% client, sans installation ni serveur : moteur de rendu
+[MuPDF](https://mupdf.com/) compilé en WebAssembly, avec un décodeur de
+contours de glyphes maison (TrueType/CFF) pour mesurer fidèlement les tons
+directs — MuPDF n'exposant pas nativement de rendu "toutes séparations"
+côté JavaScript. Voir `docs/prompt-original.md` pour le brief d'origine.
+
+Contexte complet, démarche et limites : [article associé](https://www.juliensarrazin.fr/)
+*(lien à préciser — voir `webapp/config.yml` → `credits.article_url`)*.
+
+## Utilisation
+
+Aucune installation requise pour l'utilisateur final : c'est un site
+statique. Pour le lancer en local (développement/test) :
+
+```bash
+cd dev
+docker compose up --build
+# puis ouvrir http://localhost:8080
+```
+
+Documentation complète (architecture, déploiement sur hébergement mutualisé
+OVH, personnalisation du thème/config.yml, limites connues, tests) :
+[**webapp/README.md**](webapp/README.md).
+
+## Licence
+
+Ce dépôt est distribué sous licence **AGPL-3.0-or-later** (voir
+[LICENSE](LICENSE)) — imposée par l'intégration de [MuPDF](https://mupdf.com/)
+(Artifex Software), lui-même sous AGPL. Détail des composants tiers et de
+leurs licences : [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md).
+
+## Crédits
+
+Conçu par [Julien Sarrazin](https://www.juliensarrazin.fr/), designer
+graphique packaging. Développé avec l'assistance de l'IA (Claude Code) —
+voir le pied de page de l'application.

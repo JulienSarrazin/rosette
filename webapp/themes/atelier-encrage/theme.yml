@@ -1,0 +1,48 @@
+# Thème "atelier" : look technique/graphique à haut contraste, angles nets,
+# accent bleu-cyan qui fait écho à l'encre Cyan mesurée par l'outil lui-même.
+# Aucune police auto-hébergée ici (pile système uniquement) : la différence
+# avec les autres thèmes vient surtout de la couleur et des rayons d'angle.
+
+name: Atelier encrage
+
+colors:
+  light:
+    bg: "#f4f5f7"
+    surface: "#ffffff"
+    surface-alt: "#e9edf3"
+    text: "#0b0d12"
+    text-muted: "#4a5164"
+    border: "#d3d8e2"
+    accent: "#0057ff"
+    accent-strong: "#0041c4"
+    accent-contrast: "#ffffff"
+    warning-bg: "#fff2d6"
+    warning-text: "#6b4a06"
+    error-bg: "#ffe1e1"
+    error-text: "#8a1f1f"
+  dark:
+    bg: "#0a0b0f"
+    surface: "#14161c"
+    surface-alt: "#1b1e26"
+    text: "#f2f4f8"
+    text-muted: "#9aa1b4"
+    border: "#2a2e3a"
+    accent: "#3d8bff"
+    accent-strong: "#6ba6ff"
+    accent-contrast: "#05070d"
+    warning-bg: "#3a2f0f"
+    warning-text: "#f0cf7f"
+    error-bg: "#3a1512"
+    error-text: "#f5a89c"
+
+# Angles nets, look "fiche technique" plutôt que doux.
+radius:
+  sm: "2px"
+  md: "4px"
+  lg: "8px"
+  pill: "9999px"
+
+typography:
+  font_family: "'Helvetica Neue', Helvetica, Arial, ui-sans-serif, system-ui, sans-serif"
+  font_family_heading: "'Helvetica Neue', Helvetica, Arial, ui-sans-serif, system-ui, sans-serif"
+  google_font_url: ""

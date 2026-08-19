@@ -1,0 +1,62 @@
+# Thème calé sur les couleurs/typographie de juliensarrazin.fr (WordPress,
+# thème enfant "Twenty Twenty-Five JS"). Palette relevée directement dans les
+# variables --wp--preset--color--* du site (base/contrast/accent-1..6) ;
+# police Manrope + Fira Code auto-hébergées comme sur le site d'origine
+# (fichiers .woff2 récupérés depuis wp-content/themes/twentytwentyfive/assets/
+# fonts/, licence SIL Open Font License — voir fonts/LICENSE.txt). Pas de
+# correspondance automatique : à ré-ajuster à la main si le site change.
+
+name: Julien Sarrazin
+
+colors:
+  light:
+    bg: "#f3efec"
+    surface: "#ffffff"
+    surface-alt: "#f1eee9"
+    text: "#182125"
+    text-muted: "#5f5f5f"
+    border: "rgba(24, 33, 37, 0.15)"
+    accent: "#182125"
+    accent-strong: "#000000"
+    accent-contrast: "#f3efec"
+    warning-bg: "#f6ecd9"
+    warning-text: "#7a5a12"
+    error-bg: "#f8e2df"
+    error-text: "#8a2b1f"
+  dark:
+    bg: "#191919"
+    surface: "#221f1c"
+    surface-alt: "#2a2622"
+    text: "#f3efec"
+    text-muted: "#b8b2a8"
+    border: "rgba(243, 239, 236, 0.15)"
+    accent: "#f5b684"
+    accent-strong: "#f7c69c"
+    accent-contrast: "#191919"
+    warning-bg: "#3a2f0f"
+    warning-text: "#f0cf7f"
+    error-bg: "#3a1512"
+    error-text: "#f5a89c"
+
+# Twenty Twenty-Five garde des angles peu marqués sur ses boutons/blocs.
+radius:
+  sm: "4px"
+  md: "8px"
+  lg: "12px"
+  pill: "9999px"
+
+typography:
+  font_family: "'Manrope', system-ui, -apple-system, sans-serif"
+  font_family_heading: "'Manrope', system-ui, -apple-system, sans-serif"
+  google_font_url: ""
+  # Auto-hébergées (fichiers dans ce dossier) : toujours actives, jamais
+  # soumises au réglage cdn.enabled de config.yml.
+  font_files:
+    - family: "Manrope"
+      url: "fonts/Manrope-VariableFont_wght.woff2"
+      weight: "200 800"
+      style: "normal"
+    - family: "Fira Code"
+      url: "fonts/FiraCode-VariableFont_wght.woff2"
+      weight: "300 700"
+      style: "normal"

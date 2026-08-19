@@ -1,0 +1,47 @@
+# Thème "doux" : look calme et arrondi, palette sauge/lavande pastel, grands
+# rayons d'angle — à l'opposé du thème "atelier-encrage". Sert aussi à
+# vérifier que le mécanisme de thème supporte des looks très différents.
+
+name: Doux
+
+colors:
+  light:
+    bg: "#f5f4fa"
+    surface: "#ffffff"
+    surface-alt: "#eef1ec"
+    text: "#33313f"
+    text-muted: "#7a7788"
+    border: "#e2ddee"
+    accent: "#7fae8e"
+    accent-strong: "#628f70"
+    accent-contrast: "#ffffff"
+    warning-bg: "#fbeedd"
+    warning-text: "#7a5a12"
+    error-bg: "#fbe4e8"
+    error-text: "#8a2b45"
+  dark:
+    bg: "#211f2b"
+    surface: "#2a2836"
+    surface-alt: "#312e40"
+    text: "#f1eff8"
+    text-muted: "#b3aec2"
+    border: "#3d3a4d"
+    accent: "#8fcaa2"
+    accent-strong: "#aad9ba"
+    accent-contrast: "#16241a"
+    warning-bg: "#3a2f0f"
+    warning-text: "#f0cf7f"
+    error-bg: "#3a1512"
+    error-text: "#f5a89c"
+
+# Grands rayons, look doux/enveloppant.
+radius:
+  sm: "10px"
+  md: "20px"
+  lg: "28px"
+  pill: "9999px"
+
+typography:
+  font_family: "'Avenir Next', 'Century Gothic', ui-rounded, system-ui, -apple-system, sans-serif"
+  font_family_heading: "'Avenir Next', 'Century Gothic', ui-rounded, system-ui, -apple-system, sans-serif"
+  google_font_url: ""

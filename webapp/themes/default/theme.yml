@@ -1,0 +1,54 @@
+# Thème par défaut de TAC-calc.
+# Pour créer un autre thème : copiez ce dossier (themes/mon-theme/theme.yml),
+# ajustez les valeurs, puis changez `theme: mon-theme` dans config.yml.
+
+name: Default
+
+colors:
+  light:
+    bg: "#f6f5f2"
+    surface: "#ffffff"
+    surface-alt: "#eef0eb"
+    text: "#1d1e1a"
+    text-muted: "#5c5f57"
+    border: "#dcdcd4"
+    accent: "#2f6f4f"
+    accent-strong: "#1f5138"
+    accent-contrast: "#ffffff"
+    warning-bg: "#fff4e0"
+    warning-text: "#6b4a06"
+    error-bg: "#fdeceb"
+    error-text: "#8a2417"
+  dark:
+    bg: "#15171a"
+    surface: "#1f2124"
+    surface-alt: "#262a26"
+    text: "#edeeea"
+    text-muted: "#a4a89f"
+    border: "#33362f"
+    accent: "#6bcf9a"
+    accent-strong: "#8fdfb4"
+    accent-contrast: "#0b1a11"
+    warning-bg: "#3a2f0f"
+    warning-text: "#f0cf7f"
+    error-bg: "#3a1512"
+    error-text: "#f5a89c"
+
+# Rayons d'angle : montez sm/md/lg pour un look plus doux/arrondi, descendez
+# vers 2-4px pour un look plus anguleux/technique.
+radius:
+  sm: "6px"
+  md: "14px"
+  lg: "22px"
+  pill: "999px"
+
+typography:
+  # Pile locale utilisée dans tous les cas (CDN désactivé, ou champ ci-dessous
+  # vide) — zéro dépendance externe.
+  font_family: "system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+  font_family_heading: ""
+  # Police optionnelle chargée depuis un CDN (Google Fonts par ex.), seulement
+  # si config.yml -> cdn.enabled est à true. Laisser vide pour rester 100%
+  # auto-hébergé. Exemple : "https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap"
+  # puis mettre font_family à "'Manrope', system-ui, sans-serif" ci-dessus.
+  google_font_url: ""
