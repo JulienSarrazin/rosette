@@ -1,5 +1,8 @@
-// Génère un CSV strictement au même format que le script Python d'origine :
-// colonnes Page,Encre,Couverture_% ; une ligne TAC_MOYEN par page.
+// Génère un CSV avec les mêmes colonnes que le script Python d'origine :
+// Page,Encre,Couverture_% ; une ligne de synthèse par page ("TAC Page" /
+// "Page TAC" selon la langue de l'interface — voir js/i18n.js, ce n'est plus
+// la valeur fixe "TAC_MOYEN" du script d'origine, changement demandé
+// explicitement).
 
 function csvField(value) {
 	const s = String(value);
@@ -9,7 +12,7 @@ function csvField(value) {
 }
 
 // rows: [{ page, encre, couverturePct }], déjà dans l'ordre d'affichage voulu
-// (y compris les lignes TAC_MOYEN).
+// (y compris les lignes de synthèse par page).
 export function buildCSV(rows) {
 	const lines = ["Page,Encre,Couverture_%"];
 	for (const row of rows)

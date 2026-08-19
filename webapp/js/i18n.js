@@ -21,12 +21,12 @@ const DICT = {
 		"controls.dpi1200": "1200 DPI (lent, forte mémoire)",
 		"controls.analyze": "Analyser",
 		"inkCards.heading": "Vos encres, en un coup d'œil",
-		// "TAC de la page", pas "TAC moyen" : le TAC d'une page n'est pas une
+		// "TAC Page", pas "TAC moyen" : le TAC d'une page n'est pas une
 		// moyenne entre plusieurs pages, juste la somme des couvertures de
-		// cette page-là — "moyen" prêtait à confusion (voir CSV où la valeur
-		// brute "TAC_MOYEN" reste inchangée, format imposé par le script
-		// d'origine, voir csv-export.js).
-		"inkCards.tacLabel": "TAC de la page",
+		// cette page-là — "moyen" prêtait à confusion. Réutilisé tel quel par
+		// le CSV exporté (voir csv-export.js/flattenRows) : plus de valeur
+		// fixe "TAC_MOYEN", le CSV suit désormais la langue de l'interface.
+		"inkCards.tacLabel": "TAC Page",
 		"inkCards.pageLabel": "Page {page}",
 		"inkCards.approxTitle": "Couleur approximative : ce ton direct n'a pas de correspondance CMJN exploitable dans le PDF, une teinte arbitraire mais stable est utilisée pour le distinguer visuellement.",
 		"process.ink.Cyan": "Cyan",

@@ -304,7 +304,11 @@ function flattenRows() {
 			if (!excludedInks.has(ink.encre))
 				tac += ink.couverturePct;
 		}
-		rows.push({ page, encre: "TAC_MOYEN", couverturePct: tac, estime: false, isTac: true });
+		// Valeur traduite ("TAC Page" / "Page TAC"), pas une valeur fixe : le
+		// CSV exporté suit désormais la langue de l'interface au moment du
+		// clic sur "Télécharger CSV" (demandé explicitement, voir
+		// js/i18n.js pour la traduction).
+		rows.push({ page, encre: t("inkCards.tacLabel"), couverturePct: tac, estime: false, isTac: true });
 	}
 	return rows;
 }
@@ -333,15 +337,13 @@ function renderResults() {
 		pageTd.textContent = row.page;
 		tr.appendChild(pageTd);
 
-		// Tableau et CSV gardent toujours le nom brut du PDF pour les encres
-		// (format d'échange) : pas de préfixe bilingue "Ton direct :"/"Spot
-		// color:" ici, contrairement aux cards (voir buildInkCard/
-		// formatSpotInkLabel). La ligne TAC, elle, n'est pas une donnée issue
-		// du PDF : on peut donc l'afficher traduite à l'écran sans rien
-		// changer à l'export CSV (row.encre reste "TAC_MOYEN" côté CSV, voir
-		// flattenRows() — format imposé par le script d'origine).
+		// Tableau et CSV gardent le nom brut du PDF pour les encres (format
+		// d'échange) : pas de préfixe bilingue "Ton direct :"/"Spot color:"
+		// ici, contrairement aux cards (voir buildInkCard/formatSpotInkLabel).
+		// La ligne TAC, elle, est déjà traduite dans row.encre (voir
+		// flattenRows()) : rien de plus à faire ici.
 		const encreTd = document.createElement("td");
-		encreTd.textContent = row.isTac ? t("inkCards.tacLabel") : row.encre;
+		encreTd.textContent = row.encre;
 		tr.appendChild(encreTd);
 
 		const covTd = document.createElement("td");
@@ -422,7 +424,8 @@ function renderInkCards() {
 		const sortedInks = [...inks].sort((a, b) => inkSortIndex(a.encre) - inkSortIndex(b.encre) || a.encre.localeCompare(b.encre));
 		for (const ink of sortedInks)
 			grid.appendChild(buildInkCard(ink));
-		grid.appendChild(buildInkCard({ encre: "TAC_MOYEN", couverturePct: pageTac(page) }, true));
+		// encre inutilisé quand isTac=true (buildInkCard affiche t("inkCards.tacLabel")) : mis pour la lisibilité seulement.
+		grid.appendChild(buildInkCard({ encre: t("inkCards.tacLabel"), couverturePct: pageTac(page) }, true));
 		group.appendChild(grid);
 
 		inkCardsEl.appendChild(group);
@@ -586,7 +589,7 @@ table.querySelectorAll("th[data-sort]").forEach((th) => {
 });
 
 downloadCsvBtn.addEventListener("click", () => {
-	// Toujours exporter dans l'ordre Page -> Encre -> TAC_MOYEN, indépendamment du tri affiché à l'écran.
+	// Toujours exporter dans l'ordre Page -> Encre -> TAC Page, indépendamment du tri affiché à l'écran.
 	const csv = buildCSV(flattenRows());
 	const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
 	const url = URL.createObjectURL(blob);

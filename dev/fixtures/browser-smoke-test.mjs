@@ -76,20 +76,19 @@ async function runCase(browser, { file, dpi, expectations, label }) {
 	}
 	if (consoleErrors.length > 0) ok = false;
 
-	// Le tableau à l'écran affiche un libellé traduit pour la ligne TAC
-	// ("TAC de la page" / "Page TAC"), mais le CSV exporté doit garder la
-	// valeur brute "TAC_MOYEN" telle quelle : c'est un format d'échange fixé
-	// par le script Python d'origine, pas une chaîne d'UI (voir
-	// csv-export.js). On le vérifie ici pour ne pas régresser silencieusement
-	// si le libellé à l'écran est retouché un jour.
+	// Le CSV exporté suit désormais la langue de l'interface pour la ligne de
+	// synthèse par page ("TAC Page" / "Page TAC", voir js/i18n.js) — ce n'est
+	// plus la valeur fixe "TAC_MOYEN" du script Python d'origine (changement
+	// demandé explicitement). On vérifie ici que le CSV reflète bien le
+	// libellé affiché à l'écran, pas l'ancienne valeur.
 	const [download] = await Promise.all([
 		page.waitForEvent("download"),
 		page.click("#download-csv-btn"),
 	]);
 	const csvPath = await download.path();
 	const csvContent = await import("node:fs").then((fs) => fs.readFileSync(csvPath, "utf8"));
-	const csvOk = csvContent.includes("TAC_MOYEN") && !csvContent.includes("TAC de la page");
-	console.log(csvOk ? "  OK:   CSV contient bien TAC_MOYEN (pas le libellé traduit)" : "  FAIL: CSV ne contient pas TAC_MOYEN tel quel");
+	const csvOk = csvContent.includes("TAC Page") && !csvContent.includes("TAC_MOYEN");
+	console.log(csvOk ? "  OK:   CSV contient bien \"TAC Page\" (plus l'ancien TAC_MOYEN)" : "  FAIL: CSV ne contient pas le libellé attendu");
 	if (!csvOk) ok = false;
 
 	await page.close();
@@ -113,9 +112,9 @@ allOk =
 			// cumule la quantification 8 bits (arrondi vers le bas) des 4 canaux,
 			// un phénomène attendu (même limite qu'un TIFF 8 bits Ghostscript),
 			// pas un bug.
-			// Libellé à l'écran ("TAC de la page"), pas la valeur brute CSV
-			// ("TAC_MOYEN", vérifiée séparément plus bas via buildCSV).
-			"TAC de la page": { value: 160, tolerance: 2 },
+			// Libellé affiché à l'écran comme dans le CSV (voir vérification
+			// dédiée plus bas, qui contrôle spécifiquement le contenu du CSV).
+			"TAC Page": { value: 160, tolerance: 2 },
 		},
 	})) && allOk;
 
