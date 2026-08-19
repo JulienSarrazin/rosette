@@ -24,8 +24,7 @@ contours de glyphes maison (TrueType/CFF) pour mesurer fidèlement les tons
 directs — MuPDF n'exposant pas nativement de rendu "toutes séparations"
 côté JavaScript. Voir `docs/prompt-original.md` pour le brief d'origine.
 
-Contexte complet, démarche et limites : [article associé](https://www.juliensarrazin.fr/)
-*(lien à préciser — voir `webapp/config.yml` → `credits.article_url`)*.
+Contexte complet, démarche et limites : [article associé](https://www.juliensarrazin.fr/2026/02/01/mesurer-le-taux-dencrage-pourquoi-la-mesure-au-point-ne-suffit-pas-et-comment-obtenir-une-mesure-globale-exploitable/)
 
 ## Utilisation
 

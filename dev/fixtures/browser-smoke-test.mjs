@@ -76,6 +76,22 @@ async function runCase(browser, { file, dpi, expectations, label }) {
 	}
 	if (consoleErrors.length > 0) ok = false;
 
+	// Le tableau à l'écran affiche un libellé traduit pour la ligne TAC
+	// ("TAC de la page" / "Page TAC"), mais le CSV exporté doit garder la
+	// valeur brute "TAC_MOYEN" telle quelle : c'est un format d'échange fixé
+	// par le script Python d'origine, pas une chaîne d'UI (voir
+	// csv-export.js). On le vérifie ici pour ne pas régresser silencieusement
+	// si le libellé à l'écran est retouché un jour.
+	const [download] = await Promise.all([
+		page.waitForEvent("download"),
+		page.click("#download-csv-btn"),
+	]);
+	const csvPath = await download.path();
+	const csvContent = await import("node:fs").then((fs) => fs.readFileSync(csvPath, "utf8"));
+	const csvOk = csvContent.includes("TAC_MOYEN") && !csvContent.includes("TAC de la page");
+	console.log(csvOk ? "  OK:   CSV contient bien TAC_MOYEN (pas le libellé traduit)" : "  FAIL: CSV ne contient pas TAC_MOYEN tel quel");
+	if (!csvOk) ok = false;
+
 	await page.close();
 	return ok;
 }
@@ -97,7 +113,9 @@ allOk =
 			// cumule la quantification 8 bits (arrondi vers le bas) des 4 canaux,
 			// un phénomène attendu (même limite qu'un TIFF 8 bits Ghostscript),
 			// pas un bug.
-			TAC_MOYEN: { value: 160, tolerance: 2 },
+			// Libellé à l'écran ("TAC de la page"), pas la valeur brute CSV
+			// ("TAC_MOYEN", vérifiée séparément plus bas via buildCSV).
+			"TAC de la page": { value: 160, tolerance: 2 },
 		},
 	})) && allOk;
 

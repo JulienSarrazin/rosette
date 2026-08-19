@@ -36,10 +36,10 @@ credits:
   # ("Mesurer le taux d'encrage : pourquoi la mesure « au point » ne suffit
   # pas..."). URL exacte à récupérer sur le site (le PDF exporté localement a
   # l'adresse tronquée) et à coller ci-dessous.
-  article_url: "#"
+  article_url: "https://www.juliensarrazin.fr/2026/02/01/mesurer-le-taux-dencrage-pourquoi-la-mesure-au-point-ne-suffit-pas-et-comment-obtenir-une-mesure-globale-exploitable/"
   article_label: "Mesurer le taux d'encrage : pourquoi la mesure « au point » ne suffit pas..."
   # Lien vers le dépôt GitHub une fois publié (voir GITHUB.md à la racine du
   # dépôt pour la procédure) — à remplacer par l'URL réelle du repo.
-  github_url: "#"
+  github_url: "https://github.com/JulienSarrazin/inkcover/"
   github_label: "Code source sur GitHub"
   ai_disclosure_text: "Cet outil a été vibecodé par IA (Claude Code)."

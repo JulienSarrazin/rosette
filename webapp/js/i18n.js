@@ -21,7 +21,12 @@ const DICT = {
 		"controls.dpi1200": "1200 DPI (lent, forte mémoire)",
 		"controls.analyze": "Analyser",
 		"inkCards.heading": "Vos encres, en un coup d'œil",
-		"inkCards.tacLabel": "TAC moyen",
+		// "TAC de la page", pas "TAC moyen" : le TAC d'une page n'est pas une
+		// moyenne entre plusieurs pages, juste la somme des couvertures de
+		// cette page-là — "moyen" prêtait à confusion (voir CSV où la valeur
+		// brute "TAC_MOYEN" reste inchangée, format imposé par le script
+		// d'origine, voir csv-export.js).
+		"inkCards.tacLabel": "TAC de la page",
 		"inkCards.pageLabel": "Page {page}",
 		"inkCards.approxTitle": "Couleur approximative : ce ton direct n'a pas de correspondance CMJN exploitable dans le PDF, une teinte arbitraire mais stable est utilisée pour le distinguer visuellement.",
 		"process.ink.Cyan": "Cyan",
@@ -35,7 +40,7 @@ const DICT = {
 		"table.ink": "Encre",
 		"table.coverage": "Couverture_%",
 		"table.include": "Inclure dans TAC",
-		"table.includeTitle": "Inclure « {ink} » dans le TAC_MOYEN de toutes les pages",
+		"table.includeTitle": "Inclure « {ink} » dans le TAC de chaque page",
 		"results.legend": "≈ estimation (encre directe, rendu reconstruit dans le navigateur — voir plus bas « Comprendre les limites de cet outil »)",
 		"dashboard.heading": "Impact éco-encrage",
 		"dashboard.badge": "estimation",
@@ -113,7 +118,9 @@ const DICT = {
 		"controls.dpi1200": "1200 DPI (slow, high memory use)",
 		"controls.analyze": "Analyze",
 		"inkCards.heading": "Your inks, at a glance",
-		"inkCards.tacLabel": "Average TAC",
+		// "Page TAC", not "Average TAC": a page's TAC isn't an average across
+		// pages, just the sum of that page's own ink coverages.
+		"inkCards.tacLabel": "Page TAC",
 		"inkCards.pageLabel": "Page {page}",
 		"inkCards.approxTitle": "Approximate color: this spot color has no usable CMYK match in the PDF, an arbitrary but stable hue is used to tell it apart visually.",
 		"process.ink.Cyan": "Cyan",
@@ -127,7 +134,7 @@ const DICT = {
 		"table.ink": "Ink",
 		"table.coverage": "Coverage_%",
 		"table.include": "Include in TAC",
-		"table.includeTitle": "Include \"{ink}\" in the average TAC of all pages",
+		"table.includeTitle": "Include \"{ink}\" in each page's TAC",
 		"results.legend": "≈ estimate (spot color, rendering reconstructed in the browser — see \"Understand this tool's limitations\" below)",
 		"dashboard.heading": "Eco-inking impact",
 		"dashboard.badge": "estimate",

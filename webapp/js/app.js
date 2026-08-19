@@ -333,11 +333,15 @@ function renderResults() {
 		pageTd.textContent = row.page;
 		tr.appendChild(pageTd);
 
-		// Tableau et CSV gardent toujours le nom brut du PDF (format
-		// d'échange) : pas de préfixe bilingue "Ton direct :"/"Spot color:"
-		// ici, contrairement aux cards (voir buildInkCard/formatSpotInkLabel).
+		// Tableau et CSV gardent toujours le nom brut du PDF pour les encres
+		// (format d'échange) : pas de préfixe bilingue "Ton direct :"/"Spot
+		// color:" ici, contrairement aux cards (voir buildInkCard/
+		// formatSpotInkLabel). La ligne TAC, elle, n'est pas une donnée issue
+		// du PDF : on peut donc l'afficher traduite à l'écran sans rien
+		// changer à l'export CSV (row.encre reste "TAC_MOYEN" côté CSV, voir
+		// flattenRows() — format imposé par le script d'origine).
 		const encreTd = document.createElement("td");
-		encreTd.textContent = row.encre;
+		encreTd.textContent = row.isTac ? t("inkCards.tacLabel") : row.encre;
 		tr.appendChild(encreTd);
 
 		const covTd = document.createElement("td");
