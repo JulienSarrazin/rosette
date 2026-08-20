@@ -1,3 +1,5 @@
+<div align="center">
+
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/logo-ondark.png">
   <img src="docs/logo-onclear.png" alt="rosette" width="260">
@@ -8,6 +10,8 @@
 ![Zéro upload](https://img.shields.io/badge/données-zéro_upload-1f6feb?style=flat-square)
 ![Éco-conception](https://img.shields.io/badge/🌱-éco--conception-2ea44f?style=flat-square)
 ![License](https://img.shields.io/github/license/JulienSarrazin/rosette?style=flat-square)
+
+</div>
 
 > **La rosette — la signature de l'offset**
 >
