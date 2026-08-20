@@ -15,7 +15,7 @@
 
 *En CMJN, la superposition des trames de chaque couleur à des angles différents forme un petit motif en pointillés : la rosette.*
 
-### Rosette mesure le taux de couverture d'encre d'un fichier PDF et détermine la quantité d'encre déposée et estime une empreinte carbone
+### Rosette mesure le taux de couverture d'encre d'un fichier PDF, détermine la quantité d'encre déposée et estime une empreinte carbone
 
 Analyse un PDF d'impression (CMJN + tons directs) et calcule la couverture
 d'encre par page, directement dans l'onglet du navigateur — le fichier ne
