@@ -2,7 +2,7 @@
 // de wasm MuPDF) après le premier chargement, pour un fonctionnement hors-ligne
 // ensuite. Stratégie cache-first + mise à jour en arrière-plan.
 
-const CACHE_NAME = "rosette-v2";
+const CACHE_NAME = "rosette-v3";
 const CORE_ASSETS = [
 	"./",
 	"./index.html",
@@ -10,7 +10,6 @@ const CORE_ASSETS = [
 	"./themes/default/theme.yml",
 	"./css/styles.css",
 	"./img/logo-onclear.png",
-	"./img/logo-ondark.png",
 	"./js/app.js",
 	"./js/worker.js",
 	"./js/cmyk-coverage.js",
