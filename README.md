@@ -13,11 +13,9 @@
 
 </div>
 
-> En CMJN, la superposition des trames de chaque couleur à des angles
-> différents forme un petit motif en pointillés : la rosette.
+*En CMJN, la superposition des trames de chaque couleur à des angles différents forme un petit motif en pointillés : la rosette.*
 
-**Mesure du taux de couverture d'encre (TAC) d'un PDF print — 100% dans le
-navigateur, zéro upload, zéro backend.**
+### Rosette mesure le taux de couverture d'encre d'un fichier PDF et détermine la quantité d'encre déposée et estime une empreinte carbone
 
 Analyse un PDF d'impression (CMJN + tons directs) et calcule la couverture
 d'encre par page, directement dans l'onglet du navigateur — le fichier ne
