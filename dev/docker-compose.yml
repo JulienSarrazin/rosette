@@ -1,5 +1,5 @@
 services:
-  tac-calc:
+  rosette:
     build:
       context: ..
       dockerfile: dev/Dockerfile

@@ -1,4 +1,4 @@
-# Thème par défaut de TAC-calc.
+# Thème par défaut de rosette.
 # Pour créer un autre thème : copiez ce dossier (themes/mon-theme/theme.yml),
 # ajustez les valeurs, puis changez `theme: mon-theme` dans config.yml.
 

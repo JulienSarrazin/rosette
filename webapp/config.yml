@@ -1,4 +1,4 @@
-# Configuration du site TAC-calc.
+# Configuration du site rosette.
 # Éditez ce fichier directement : pas de sélecteur dans l'interface, les
 # changements prennent effet au rechargement de la page. Format YAML minimal
 # (voir js/yaml-lite.js) : indentation à 2 espaces, pas de tabulations.
@@ -40,6 +40,8 @@ credits:
   article_label: "Mesurer le taux d'encrage : pourquoi la mesure « au point » ne suffit pas..."
   # Lien vers le dépôt GitHub une fois publié (voir GITHUB.md à la racine du
   # dépôt pour la procédure) — à remplacer par l'URL réelle du repo.
-  github_url: "https://github.com/JulienSarrazin/inkcover/"
+  # Suppose que vous renommez le dépôt GitHub "inkcover" -> "rosette" (voir
+  # GITHUB.md) ; sinon remettez l'ancienne URL le temps du renommage.
+  github_url: "https://github.com/JulienSarrazin/rosette/"
   github_label: "Code source sur GitHub"
   ai_disclosure_text: "Cet outil a été vibecodé par IA (Claude Code)."

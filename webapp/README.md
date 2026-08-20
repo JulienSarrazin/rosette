@@ -1,9 +1,10 @@
-# Taux de couverture d'encre (TAC) — 100% navigateur
+# rosette — taux de couverture d'encre (TAC), 100% navigateur
 
-Portage 100% client, sans backend, du script Python d'origine (`code-original.txt`,
+Portage 100% client, sans backend, du script Python d'origine (`docs/original-python-script.py`
 à la racine du dépôt) qui mesurait la couverture d'encre CMJN + tons directs d'un
 PDF print via Ghostscript (`tiffsep`). Le PDF ne quitte jamais le navigateur :
 aucun upload, aucun appel réseau après le chargement initial de la page.
+Voir le [README racine](../README.md) pour la présentation du projet.
 
 ## Lancer en local
 
@@ -172,7 +173,7 @@ Pour essayer un thème : éditez `theme:` dans `config.yml`, rechargez la page.
 ## Déploiement sur hébergement mutualisé OVH (Apache)
 
 Le dossier `webapp/` se déploie **tel quel** par FTP/SFTP dans le dossier
-public (ou un sous-dossier dédié, ex. `/outils/tac-calc/`). Aucun backend,
+public (ou un sous-dossier dédié, ex. `/outils/rosette/`). Aucun backend,
 aucun Node.js côté serveur.
 
 Le fichier `.htaccess` fourni dans `webapp/` :

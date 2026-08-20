@@ -2,7 +2,7 @@
 // de wasm MuPDF) après le premier chargement, pour un fonctionnement hors-ligne
 // ensuite. Stratégie cache-first + mise à jour en arrière-plan.
 
-const CACHE_NAME = "tac-calc-v3";
+const CACHE_NAME = "rosette-v1";
 const CORE_ASSETS = [
 	"./",
 	"./index.html",

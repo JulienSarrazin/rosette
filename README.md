@@ -1,4 +1,14 @@
-# TAC-calc
+# Rosette
+
+> **La rosette — la signature de l'offset**
+>
+> En impression CMJN, les quatre plaques tramées sont imprimées à des angles
+> légèrement différents (C : 15°, M : 75°, J : 0°, N : 45°). Quand elles se
+> superposent, les points forment un motif caractéristique appelé rosette.
+> C'est la signature visuelle de l'impression offset. La « structure
+> pointillée » reconnaissable d'un magazine ou d'un catalogue imprimé, c'est
+> précisément cette rosette. Avec des angles mal choisis, le résultat est un
+> moiré visible sur l'imprimé.
 
 **Mesure du taux de couverture d'encre (TAC) d'un PDF print — 100% dans le
 navigateur, zéro upload, zéro backend.**
@@ -24,7 +34,8 @@ contours de glyphes maison (TrueType/CFF) pour mesurer fidèlement les tons
 directs — MuPDF n'exposant pas nativement de rendu "toutes séparations"
 côté JavaScript. Voir `docs/prompt-original.md` pour le brief d'origine.
 
-Contexte complet, démarche et limites : [article associé](https://www.juliensarrazin.fr/2026/02/01/mesurer-le-taux-dencrage-pourquoi-la-mesure-au-point-ne-suffit-pas-et-comment-obtenir-une-mesure-globale-exploitable/)
+Contexte complet, démarche et limites : [« Mesurer le taux d'encrage : pourquoi la mesure « au point » ne suffit pas... »](https://www.juliensarrazin.fr/2026/02/01/mesurer-le-taux-dencrage-pourquoi-la-mesure-au-point-ne-suffit-pas-et-comment-obtenir-une-mesure-globale-exploitable/),
+article publié le 1er février 2026 sur juliensarrazin.fr.
 
 ## Utilisation
 
@@ -53,3 +64,11 @@ leurs licences : [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md).
 Conçu par [Julien Sarrazin](https://www.juliensarrazin.fr/), designer
 graphique packaging. Développé avec l'assistance de l'IA (Claude Code) —
 voir le pied de page de l'application.
+
+## Prochaines étapes
+
+- Amélioration des rapports PDF (mise en page).
+- Amélioration de l'aperçu de page (miniatures).
+- Calcul du TAC total, toutes pages réunies, pour un même PDF.
+- Calcul de l'empreinte carbone pour la totalité du TAC (toutes pages
+  réunies) d'un même PDF.
