@@ -13,15 +13,8 @@
 
 </div>
 
-> **La rosette — la signature de l'offset**
->
-> En impression CMJN, les quatre plaques tramées sont imprimées à des angles
-> légèrement différents (C : 15°, M : 75°, J : 0°, N : 45°). Quand elles se
-> superposent, les points forment un motif caractéristique appelé rosette.
-> C'est la signature visuelle de l'impression offset. La « structure
-> pointillée » reconnaissable d'un magazine ou d'un catalogue imprimé, c'est
-> précisément cette rosette. Avec des angles mal choisis, le résultat est un
-> moiré visible sur l'imprimé.
+> En CMJN, la superposition des trames de chaque couleur à des angles
+> différents forme un petit motif en pointillés : la rosette.
 
 **Mesure du taux de couverture d'encre (TAC) d'un PDF print — 100% dans le
 navigateur, zéro upload, zéro backend.**
