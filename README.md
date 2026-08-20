@@ -1,4 +1,13 @@
-# Rosette
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/logo-ondark.png">
+  <img src="docs/logo-onclear.png" alt="rosette" width="260">
+</picture>
+
+[![Démo en ligne](https://img.shields.io/badge/Démo-en_ligne-2ea44f?style=flat-square)](https://www.juliensarrazin.fr/rosette/)
+![100% client-side](https://img.shields.io/badge/100%25-client--side-1f6feb?style=flat-square)
+![Zéro upload](https://img.shields.io/badge/données-zéro_upload-1f6feb?style=flat-square)
+![Éco-conception](https://img.shields.io/badge/🌱-éco--conception-2ea44f?style=flat-square)
+![License](https://img.shields.io/github/license/JulienSarrazin/rosette?style=flat-square)
 
 > **La rosette — la signature de l'offset**
 >

@@ -92,11 +92,25 @@ h1, h2, h3 { font-family: var(--font-heading); }
 	flex-wrap: wrap;
 }
 
-header h1 {
-	font-size: 1.7rem;
-	letter-spacing: -0.01em;
-	margin-bottom: 0.4rem;
+header h1.brand {
+	margin: 0 0 0.4rem;
+	line-height: 0;
 }
+.logo {
+	height: 2.3rem;
+	width: auto;
+	display: block;
+}
+/* Logo clair (texte sombre) par défaut ; sombre (texte blanc) seulement en
+   mode sombre — même logique que les couleurs de thème (:root[data-theme]),
+   pour rester lisible quel que soit le mode choisi dans config.yml. */
+.logo-dark { display: none; }
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme="light"]) .logo-light { display: none; }
+	:root:not([data-theme="light"]) .logo-dark { display: block; }
+}
+:root[data-theme="dark"] .logo-light { display: none; }
+:root[data-theme="dark"] .logo-dark { display: block; }
 
 .lang-switch {
 	display: inline-flex;

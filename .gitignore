@@ -7,11 +7,13 @@
 #   téléchargement, sans aucune valeur.
 /docs/references/
 
-# Copies d'origine à la racine, dupliquées proprement dans docs/
-# (original-python-script.py, prompt-original.md) : on ne versionne que
-# la copie rangée, pas les deux.
+# Copies d'origine à la racine, dupliquées proprement dans docs/ / webapp/img/
+# (original-python-script.py, prompt-original.md, logos) : on ne versionne
+# que la copie rangée, pas les deux.
 /code-original.txt
 /projet-tac-calc.txt
+/logo-rosette-onclear.png
+/logo-rosette-ondark.png
 /Base_Carbone_V23.11.csv
 /Guide de l'éco-encrage_CITEO.pdf
 /Mesurer le taux d’encrage.pdf
